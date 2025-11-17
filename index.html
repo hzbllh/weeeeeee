@@ -39,7 +39,15 @@
   .img-box img {
     width: 100%;
     border-radius: 15px;
+    margin-bottom: 10px;
+  }
+
+  .event-date {
+    font-size: 1.3em;
     margin-bottom: 20px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0,0,0,0.5);
   }
 
   #countdown {
@@ -54,6 +62,12 @@
 </head>
 
 <body>
+
+  <!-- Audio autoplay + loop -->
+  <audio id="bgm" autoplay loop>
+    <source src="https://raw.githubusercontent.com/hzbllh/weeeeeee/refs/heads/main/hachimi%20mambo%20.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="poster">
     <h1>MENJELAJAH DUNIA LUAR WEEEEE</h1>
 
@@ -61,10 +75,19 @@
       <img src="https://raw.githubusercontent.com/hzbllh/weeeeeee/refs/heads/main/1762425148541.jpg">
     </div>
 
+    <div class="event-date">8 DISEMBER 2025</div>
+
     <div id="countdown">Mengira...</div>
   </div>
 
 <script>
+  // Untuk bantu autoplay audio (sesetengah browser block)
+  document.addEventListener('click', () => {
+    let audio = document.getElementById("bgm");
+    audio.muted = false;
+    audio.play();
+  });
+
   const eventDate = new Date("2025-12-08T00:00:00").getTime();
 
   function updateCountdown() {
