@@ -4,406 +4,985 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Teghip Cameghen Hilen 🍃</title>
+<title>Teghip Cameghen Hilen 🌿</title>
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --green-dark: #102d24;
+    --green: #294f35;
+    --lime: #d8ed63;
+    --cream: #f8f6df;
+    --white: #ffffff;
+}
+
+body {
+    min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(
+            rgba(20, 53, 38, .38),
+            rgba(7, 31, 24, .75)
+        ),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=90")
+        center center / cover fixed;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.sun {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 241, 176, .22);
+    filter: blur(40px);
+    top: -100px;
+    right: 8%;
+}
+
+.mist {
+    position: absolute;
+    width: 600px;
+    height: 170px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.15);
+    filter: blur(45px);
+    animation: mistMove 16s ease-in-out infinite alternate;
+}
+
+.mist.one {
+    top: 18%;
+    left: -250px;
+}
+
+.mist.two {
+    bottom: 25%;
+    right: -300px;
+    animation-delay: 4s;
+}
+
+@keyframes mistMove {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(300px);
+    }
+}
+
+/* =========================
+   FLOATING LEAVES
+========================= */
+
+.leaf {
+    position: fixed;
+    z-index: 5;
+    font-size: 28px;
+    opacity: .55;
+    pointer-events: none;
+    animation: leafFall linear infinite;
+}
+
+.leaf:nth-child(1) {
+    left: 8%;
+    animation-duration: 12s;
+}
+
+.leaf:nth-child(2) {
+    left: 28%;
+    animation-duration: 17s;
+    animation-delay: 4s;
+}
+
+.leaf:nth-child(3) {
+    left: 67%;
+    animation-duration: 14s;
+    animation-delay: 2s;
+}
+
+.leaf:nth-child(4) {
+    left: 88%;
+    animation-duration: 19s;
+    animation-delay: 7s;
+}
+
+@keyframes leafFall {
+    0% {
+        top: -10%;
+        transform: rotate(0deg) translateX(0);
     }
 
-    body {
-        font-family: "Trebuchet MS", Arial, sans-serif;
-        min-height: 100vh;
-        color: #fff;
-        overflow-x: hidden;
+    50% {
+        transform: rotate(180deg) translateX(90px);
+    }
 
-        background:
-            linear-gradient(
-                rgba(12, 48, 39, 0.55),
-                rgba(7, 29, 25, 0.82)
-            ),
-            url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=85")
-            center/cover fixed;
+    100% {
+        top: 110%;
+        transform: rotate(360deg) translateX(-80px);
+    }
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.page {
+    min-height: 100vh;
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+}
+
+.card {
+    width: min(1050px, 100%);
+
+    position: relative;
+
+    padding: 55px 65px 70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34, 67, 49, .78),
+            rgba(11, 36, 28, .75)
+        );
+
+    border: 1px solid rgba(225, 239, 158, .55);
+
+    border-radius: 38px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.15);
+
+    text-align: center;
+}
+
+/* =========================
+   TOP ICON
+========================= */
+
+.mountain {
+    font-size: 60px;
+    line-height: 1;
+    margin-bottom: 10px;
+
+    filter:
+        drop-shadow(0 5px 8px rgba(0,0,0,.25));
+
+    animation: mountainFloat 4s ease-in-out infinite;
+}
+
+@keyframes mountainFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+.intro {
+    font-family: 'Caveat', cursive;
+    font-size: 31px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.intro::before,
+.intro::after {
+    content: "✦";
+    color: var(--lime);
+    margin: 0 18px;
+    font-family: sans-serif;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(55px, 8vw, 105px);
+    font-weight: 700;
+    line-height: .9;
+
+    margin: 5px 0 25px;
+
+    text-shadow:
+        3px 4px 0 rgba(0,0,0,.16);
+
+    color: white;
+}
+
+.title span {
+    color: var(--lime);
+}
+
+/* =========================
+   RIBBON
+========================= */
+
+.ribbon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 11px 38px;
+
+    background: var(--lime);
+    color: #24422d;
+
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 3px;
+
+    position: relative;
+
+    margin-bottom: 22px;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+.ribbon::before,
+.ribbon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+
+    width: 0;
+    height: 0;
+
+    border-top: 21px solid transparent;
+    border-bottom: 21px solid transparent;
+}
+
+.ribbon::before {
+    left: -22px;
+    border-right: 22px solid var(--lime);
+}
+
+.ribbon::after {
+    right: -22px;
+    border-left: 22px solid var(--lime);
+}
+
+.location {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+
+.location span {
+    color: var(--lime);
+    margin: 0 8px;
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+
+    max-width: 850px;
+    margin: auto;
+}
+
+.time-box {
+    padding: 22px 12px 18px;
+
+    background: rgba(8, 33, 25, .67);
+
+    border: 1.5px solid rgba(216,237,99,.75);
+
+    border-radius: 22px;
+
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,.12),
+        0 8px 25px rgba(0,0,0,.16);
+
+    transition: transform .3s ease;
+}
+
+.time-box:hover {
+    transform: translateY(-6px);
+}
+
+.icon {
+    font-size: 27px;
+    margin-bottom: 8px;
+    color: var(--lime);
+}
+
+.number {
+    display: block;
+
+    font-size: clamp(42px, 6vw, 70px);
+    font-weight: 800;
+
+    line-height: .95;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        2px 3px rgba(0,0,0,.25);
+}
+
+.label {
+    display: block;
+
+    color: var(--lime);
+
+    font-size: 13px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-top: 10px;
+}
+
+/* =========================
+   DATE
+========================= */
+
+.date {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 30px;
+    padding: 12px 30px;
+
+    border: 1.5px dashed var(--lime);
+    border-radius: 30px;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.date-icon {
+    font-size: 22px;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    max-width: 700px;
+
+    margin: 25px auto 0;
+
+    font-family: 'Caveat', cursive;
+    font-size: 27px;
+    line-height: 1.25;
+}
+
+.message .red {
+    color: #ff7166;
+}
+
+/* =========================
+   JACKET BUTTON
+========================= */
+
+.jacket {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 22px;
+
+    padding: 13px 35px;
+
+    border-radius: 30px;
+
+    background: var(--lime);
+    color: #233d2c;
+
+    font-weight: 800;
+    font-size: 16px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.25);
+
+    animation: jacketPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes jacketPulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.035);
+    }
+}
+
+/* =========================
+   SIDE SIGN
+========================= */
+
+.signboard {
+    position: absolute;
+
+    left: -100px;
+    bottom: 105px;
+
+    width: 210px;
+
+    transform: rotate(-2deg);
+}
+
+.sign {
+    position: relative;
+
+    margin: 10px 0;
+
+    padding: 11px 14px 11px 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5c3d26,
+            #8a6240,
+            #64432c
+        );
+
+    border: 2px solid #4a301f;
+
+    color: #fff;
+
+    font-family: 'Caveat', cursive;
+    font-size: 21px;
+    font-weight: 700;
+
+    text-align: left;
+
+    box-shadow:
+        0 5px 10px rgba(0,0,0,.25);
+
+    clip-path: polygon(
+        0 0,
+        90% 0,
+        100% 50%,
+        90% 100%,
+        0 100%,
+        7% 50%
+    );
+}
+
+.sign:nth-child(2) {
+    transform: translateX(12px);
+}
+
+.sign:nth-child(3) {
+    transform: translateX(-5px);
+}
+
+.sign:nth-child(4) {
+    transform: translateX(10px);
+}
+
+/* =========================
+   STRAWBERRY
+========================= */
+
+.strawberry {
+    position: absolute;
+
+    right: -70px;
+    bottom: -20px;
+
+    font-size: 145px;
+
+    filter:
+        drop-shadow(0 15px 15px rgba(0,0,0,.3));
+
+    transform: rotate(-7deg);
+
+    animation: strawberryFloat 4s ease-in-out infinite;
+}
+
+@keyframes strawberryFloat {
+    0%,100% {
+        transform: rotate(-7deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-4deg) translateY(-8px);
+    }
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    position: absolute;
+
+    bottom: -58px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 100vw;
+
+    padding: 18px;
+
+    background: rgba(7, 35, 26, .94);
+
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-item span {
+    font-size: 20px;
+}
+
+/* =========================
+   FINISHED STATE
+========================= */
+
+.finished .number {
+    color: var(--lime);
+}
+
+.finished .message {
+    font-size: 35px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .card {
+        padding: 50px 35px 65px;
+    }
+
+    .signboard {
+        display: none;
+    }
+
+    .strawberry {
+        right: -20px;
+        bottom: -15px;
+        font-size: 100px;
+    }
+}
+
+@media (max-width: 700px) {
+
+    body {
+        background-attachment: scroll;
     }
 
     .page {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 30px 18px;
-        position: relative;
-    }
-
-    /* Kabus */
-    .fog {
-        position: absolute;
-        width: 500px;
-        height: 180px;
-        background: rgba(255,255,255,0.13);
-        filter: blur(45px);
-        border-radius: 50%;
-        animation: fogMove 12s ease-in-out infinite alternate;
-    }
-
-    .fog.one {
-        top: 12%;
-        left: -120px;
-    }
-
-    .fog.two {
-        bottom: 15%;
-        right: -150px;
-        animation-delay: 3s;
-    }
-
-    @keyframes fogMove {
-        from {
-            transform: translateX(-30px);
-        }
-        to {
-            transform: translateX(120px);
-        }
+        padding: 25px 12px 100px;
     }
 
     .card {
-        position: relative;
-        z-index: 2;
-        width: 100%;
-        max-width: 760px;
-        padding: 42px 25px;
-        text-align: center;
-
-        background: rgba(10, 39, 32, 0.72);
-        border: 1px solid rgba(255,255,255,0.18);
-        border-radius: 30px;
-
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-
-        box-shadow:
-            0 25px 70px rgba(0,0,0,0.45);
+        padding: 35px 15px 55px;
+        border-radius: 27px;
     }
 
-    .emoji {
-        font-size: 55px;
-        margin-bottom: 10px;
-        animation: float 3s ease-in-out infinite;
+    .mountain {
+        font-size: 45px;
     }
 
-    @keyframes float {
-        0%,100% {
-            transform: translateY(0);
-        }
-        50% {
-            transform: translateY(-10px);
-        }
+    .intro {
+        font-size: 23px;
     }
 
-    .small-title {
-        font-size: 14px;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        opacity: 0.8;
-        margin-bottom: 12px;
+    .intro::before,
+    .intro::after {
+        margin: 0 7px;
     }
 
-    h1 {
-        font-size: clamp(38px, 8vw, 72px);
-        line-height: 1;
-        margin-bottom: 15px;
-
-        background: linear-gradient(
-            90deg,
-            #dfffa8,
-            #ffffff,
-            #b7e4c7
-        );
-
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    .title {
+        font-size: clamp(50px, 14vw, 75px);
+        line-height: .9;
+        margin-bottom: 20px;
     }
 
-    .subtitle {
-        font-size: 18px;
-        opacity: 0.9;
-        margin-bottom: 35px;
-    }
-
-    .destination {
-        display: inline-block;
-        padding: 9px 18px;
-        border-radius: 30px;
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.18);
-        margin-bottom: 28px;
-        font-size: 15px;
-    }
-
-    .countdown {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-        max-width: 620px;
-        margin: 0 auto 32px;
-    }
-
-    .box {
-        padding: 20px 8px;
-        border-radius: 20px;
-
-        background: rgba(255,255,255,0.10);
-        border: 1px solid rgba(255,255,255,0.15);
-
-        box-shadow: inset 0 1px rgba(255,255,255,0.1);
-    }
-
-    .number {
-        display: block;
-        font-size: clamp(30px, 7vw, 48px);
-        font-weight: bold;
-        line-height: 1;
-        margin-bottom: 8px;
-    }
-
-    .label {
+    .ribbon {
         font-size: 11px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        opacity: 0.7;
+        letter-spacing: 1.5px;
+        padding: 10px 22px;
     }
 
-    .date {
-        font-size: 16px;
-        opacity: 0.8;
+    .location {
+        font-size: 14px;
         margin-bottom: 25px;
     }
 
-    .quote {
-        font-size: 15px;
-        line-height: 1.7;
-        opacity: 0.75;
-        max-width: 520px;
-        margin: auto;
+    .countdown {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
-    .bottom {
-        margin-top: 28px;
-        font-size: 13px;
-        opacity: 0.55;
+    .time-box {
+        padding: 17px 5px 14px;
+        border-radius: 17px;
     }
 
-    /* Daun terapung */
-    .leaf {
-        position: fixed;
-        z-index: 1;
+    .icon {
         font-size: 22px;
-        opacity: 0.45;
-        animation: fall linear infinite;
-        pointer-events: none;
     }
 
-    .leaf:nth-child(1) {
-        left: 10%;
-        animation-duration: 12s;
-        animation-delay: 1s;
+    .number {
+        font-size: 42px;
     }
 
-    .leaf:nth-child(2) {
-        left: 30%;
-        animation-duration: 15s;
-        animation-delay: 4s;
+    .label {
+        font-size: 10px;
+        letter-spacing: 1px;
     }
 
-    .leaf:nth-child(3) {
-        left: 65%;
-        animation-duration: 13s;
-        animation-delay: 2s;
+    .date {
+        font-size: 14px;
+        padding: 10px 20px;
     }
 
-    .leaf:nth-child(4) {
-        left: 85%;
-        animation-duration: 17s;
-        animation-delay: 6s;
+    .message {
+        font-size: 23px;
     }
 
-    @keyframes fall {
-        0% {
-            top: -10%;
-            transform: rotate(0deg) translateX(0);
-        }
-
-        50% {
-            transform: rotate(180deg) translateX(70px);
-        }
-
-        100% {
-            top: 110%;
-            transform: rotate(360deg) translateX(-50px);
-        }
+    .jacket {
+        font-size: 13px;
+        padding: 12px 22px;
     }
 
-    @media (max-width: 520px) {
-        .card {
-            padding: 35px 15px;
-            border-radius: 25px;
-        }
-
-        .countdown {
-            gap: 7px;
-        }
-
-        .box {
-            padding: 17px 5px;
-            border-radius: 15px;
-        }
-
-        .number {
-            font-size: 29px;
-        }
-
-        .label {
-            font-size: 9px;
-            letter-spacing: 1px;
-        }
-
-        .subtitle {
-            font-size: 16px;
-        }
+    .strawberry {
+        opacity: .7;
+        font-size: 75px;
+        right: -8px;
+        bottom: -10px;
     }
+
+    .footer {
+        bottom: -80px;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 12px;
+
+        font-size: 10px;
+
+        white-space: normal;
+    }
+
+    .footer-item {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 380px) {
+
+    .number {
+        font-size: 36px;
+    }
+
+    .title {
+        font-size: 47px;
+    }
+
+    .message {
+        font-size: 21px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="fog one"></div>
-<div class="fog two"></div>
+<!-- BACKGROUND -->
+<div class="background">
+    <div class="sun"></div>
+    <div class="mist one"></div>
+    <div class="mist two"></div>
+</div>
 
+<!-- FLOATING LEAVES -->
 <div class="leaf">🍃</div>
 <div class="leaf">🌿</div>
 <div class="leaf">🍃</div>
 <div class="leaf">🌿</div>
+
 
 <div class="page">
 
-    <div class="card">
+    <main class="card" id="card">
 
-        <div class="emoji">🏔️🍓🍃</div>
+        <!-- TOP -->
+        <div class="mountain">🏔️</div>
 
-        <div class="small-title">
+        <div class="intro">
             Trip Kita Bermula Dalam...
         </div>
 
-        <h1>Teghip Cameghen Hilen</h1>
+        <!-- TITLE -->
+        <h1 class="title">
+            Teghip <span>Cameghen</span> Hilen
+        </h1>
 
-        <div class="subtitle">
-            🌿 Cameron Highlands Adventure 🌿
+        <!-- RIBBON -->
+        <div class="ribbon">
+            🍃 CAMERON HIGHLANDS ADVENTURE 🍃
         </div>
 
-        <div class="destination">
+        <!-- LOCATION -->
+        <div class="location">
+            <span>🌿</span>
             📍 Cameron Highlands, Pahang
+            <span>🌿</span>
         </div>
 
+
+        <!-- COUNTDOWN -->
         <div class="countdown">
 
-            <div class="box">
+            <div class="time-box">
+                <div class="icon">📅</div>
                 <span class="number" id="days">00</span>
-                <span class="label">Hari</span>
+                <span class="label">HARI</span>
             </div>
 
-            <div class="box">
+            <div class="time-box">
+                <div class="icon">🕐</div>
                 <span class="number" id="hours">00</span>
-                <span class="label">Jam</span>
+                <span class="label">JAM</span>
             </div>
 
-            <div class="box">
+            <div class="time-box">
+                <div class="icon">◔</div>
                 <span class="number" id="minutes">00</span>
-                <span class="label">Minit</span>
+                <span class="label">MINIT</span>
             </div>
 
-            <div class="box">
+            <div class="time-box">
+                <div class="icon">⏱️</div>
                 <span class="number" id="seconds">00</span>
-                <span class="label">Saat</span>
+                <span class="label">SAAT</span>
             </div>
 
         </div>
 
+
+        <!-- DATE -->
         <div class="date">
-            📅 21 September 2026
+            <span class="date-icon">📅</span>
+            21 SEPTEMBER 2026
         </div>
 
-        <div class="quote">
-            "Siap sedia untuk udara sejuk, kabus,
-            ladang teh, strawberry dan kenangan baru." 🍓☁️
+
+        <!-- MESSAGE -->
+        <div class="message">
+            Siap sedia untuk udara sejuk, kabus,
+            <br>
+            ladang teh, <span class="red">strawberry</span> dan kenangan baru. 🍓
         </div>
 
-        <div class="bottom">
-            ✨ Jangan lupa bawa jaket! ✨
+
+        <!-- JACKET -->
+        <div class="jacket">
+            🧥 Jangan lupa bawa jaket! ❄️
         </div>
 
-    </div>
+
+        <!-- SIGNBOARD -->
+        <div class="signboard">
+
+            <div class="sign">
+                🍓 Strawberry Farm
+            </div>
+
+            <div class="sign">
+                🍃 Ladang Teh
+            </div>
+
+            <div class="sign">
+                📸 Spot OOTD
+            </div>
+
+            <div class="sign">
+                ☁️ Udara Sejuk
+            </div>
+
+        </div>
+
+
+        <!-- STRAWBERRY -->
+        <div class="strawberry">
+            🍓
+        </div>
+
+
+        <!-- FOOTER -->
+        <div class="footer">
+
+            <div class="footer-item">
+                <span>🏔️</span>
+                Pemandangan Indah
+            </div>
+
+            <div class="footer-item">
+                <span>📸</span>
+                Kenangan Terindah
+            </div>
+
+            <div class="footer-item">
+                <span>👨‍👩‍👧‍👦</span>
+                Kawan Best
+            </div>
+
+            <div class="footer-item">
+                <span>♡</span>
+                Mood Gempak
+            </div>
+
+        </div>
+
+    </main>
 
 </div>
 
+
 <script>
 
-    // 21 September 2026, 12:00 AM waktu Malaysia
-    const targetDate = new Date("2026-09-21T00:00:00+08:00").getTime();
+/* =====================================
+   COUNTDOWN
+   21 SEPTEMBER 2026 - MALAYSIA
+===================================== */
 
-    function updateCountdown() {
+const targetDate =
+    new Date("2026-09-21T00:00:00+08:00").getTime();
 
-        const now = new Date().getTime();
-        const distance = targetDate - now;
 
-        if (distance <= 0) {
+function updateCountdown() {
 
-            document.getElementById("days").textContent = "00";
-            document.getElementById("hours").textContent = "00";
-            document.getElementById("minutes").textContent = "00";
-            document.getElementById("seconds").textContent = "00";
+    const now = new Date().getTime();
 
-            document.querySelector(".small-title").textContent =
-                "MASA UNTUK BERTOLAK! 🚗";
+    const distance = targetDate - now;
 
-            document.querySelector(".quote").textContent =
-                "Cameron Highlands, kami datang! 🏔️🍓🌿";
 
-            return;
-        }
+    /* COUNTDOWN HABIS */
 
-        const days = Math.floor(
+    if (distance <= 0) {
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        document.querySelector(".intro").textContent =
+            "MASA UNTUK BERTOLAK! 🚗";
+
+        document.querySelector(".message").innerHTML =
+            "Cameron Highlands,<br><span class='red'>KAMI DATANG!</span> 🏔️🍓";
+
+        document.querySelector(".jacket").innerHTML =
+            "🚗 JOM GERAK! 🏔️";
+
+        document.getElementById("card").classList.add("finished");
+
+        return;
+    }
+
+
+    /* CALCULATE */
+
+    const days =
+        Math.floor(
             distance / (1000 * 60 * 60 * 24)
         );
 
-        const hours = Math.floor(
+    const hours =
+        Math.floor(
             (distance / (1000 * 60 * 60)) % 24
         );
 
-        const minutes = Math.floor(
+    const minutes =
+        Math.floor(
             (distance / (1000 * 60)) % 60
         );
 
-        const seconds = Math.floor(
+    const seconds =
+        Math.floor(
             (distance / 1000) % 60
         );
 
-        document.getElementById("days").textContent =
-            String(days).padStart(2, "0");
 
-        document.getElementById("hours").textContent =
-            String(hours).padStart(2, "0");
+    /* DISPLAY */
 
-        document.getElementById("minutes").textContent =
-            String(minutes).padStart(2, "0");
+    document.getElementById("days").textContent =
+        String(days).padStart(2, "0");
 
-        document.getElementById("seconds").textContent =
-            String(seconds).padStart(2, "0");
-    }
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2, "0");
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2, "0");
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2, "0");
+}
+
+
+/* RUN */
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
 
 </script>
 
