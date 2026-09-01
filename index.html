@@ -3,154 +3,408 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tayangan Countdown</title>
+
+<title>Teghip Cameghen Hilen 🍃</title>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #1e3a8a, #facc15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    color: #fff;
-    position: relative;
-  }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-  .poster {
-    max-width: 600px;
-    width: 90%;
-    padding: 30px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 0 25px rgba(0,0,0,0.2);
-  }
+    body {
+        font-family: "Trebuchet MS", Arial, sans-serif;
+        min-height: 100vh;
+        color: #fff;
+        overflow-x: hidden;
 
-  h1 {
-    font-size: 2.3em;
-    margin-bottom: 15px;
-    color: #ffeb3b;
-    text-shadow: 0 0 10px rgba(0,0,0,0.4);
-  }
+        background:
+            linear-gradient(
+                rgba(12, 48, 39, 0.55),
+                rgba(7, 29, 25, 0.82)
+            ),
+            url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=85")
+            center/cover fixed;
+    }
 
-  .img-box img {
-    width: 100%;
-    border-radius: 15px;
-    margin-bottom: 10px;
-  }
+    .page {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px 18px;
+        position: relative;
+    }
 
-  .event-date {
-    font-size: 1.3em;
-    margin-bottom: 20px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 8px rgba(0,0,0,0.5);
-  }
+    /* Kabus */
+    .fog {
+        position: absolute;
+        width: 500px;
+        height: 180px;
+        background: rgba(255,255,255,0.13);
+        filter: blur(45px);
+        border-radius: 50%;
+        animation: fogMove 12s ease-in-out infinite alternate;
+    }
 
-  #countdown {
-    font-size: 1.9em;
-    font-weight: bold;
-    padding: 15px;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.25);
-    color: #fff;
+    .fog.one {
+        top: 12%;
+        left: -120px;
+    }
 
-    /* ANIMASI */
-    animation: pop 1s infinite alternate;
-  }
+    .fog.two {
+        bottom: 15%;
+        right: -150px;
+        animation-delay: 3s;
+    }
 
-  @keyframes pop {
-    0% { transform: scale(1); opacity: 0.85; }
-    100% { transform: scale(1.06); opacity: 1; }
-  }
+    @keyframes fogMove {
+        from {
+            transform: translateX(-30px);
+        }
+        to {
+            transform: translateX(120px);
+        }
+    }
 
-  /* Speaker Icon */
-  #speaker-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 32px;
-    cursor: pointer;
-    user-select: none;
-    transition: 0.2s;
-  }
+    .card {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 760px;
+        padding: 42px 25px;
+        text-align: center;
 
-  #speaker-btn:hover {
-    transform: scale(1.2);
-  }
+        background: rgba(10, 39, 32, 0.72);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 30px;
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        box-shadow:
+            0 25px 70px rgba(0,0,0,0.45);
+    }
+
+    .emoji {
+        font-size: 55px;
+        margin-bottom: 10px;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%,100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .small-title {
+        font-size: 14px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        opacity: 0.8;
+        margin-bottom: 12px;
+    }
+
+    h1 {
+        font-size: clamp(38px, 8vw, 72px);
+        line-height: 1;
+        margin-bottom: 15px;
+
+        background: linear-gradient(
+            90deg,
+            #dfffa8,
+            #ffffff,
+            #b7e4c7
+        );
+
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        opacity: 0.9;
+        margin-bottom: 35px;
+    }
+
+    .destination {
+        display: inline-block;
+        padding: 9px 18px;
+        border-radius: 30px;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.18);
+        margin-bottom: 28px;
+        font-size: 15px;
+    }
+
+    .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        max-width: 620px;
+        margin: 0 auto 32px;
+    }
+
+    .box {
+        padding: 20px 8px;
+        border-radius: 20px;
+
+        background: rgba(255,255,255,0.10);
+        border: 1px solid rgba(255,255,255,0.15);
+
+        box-shadow: inset 0 1px rgba(255,255,255,0.1);
+    }
+
+    .number {
+        display: block;
+        font-size: clamp(30px, 7vw, 48px);
+        font-weight: bold;
+        line-height: 1;
+        margin-bottom: 8px;
+    }
+
+    .label {
+        font-size: 11px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        opacity: 0.7;
+    }
+
+    .date {
+        font-size: 16px;
+        opacity: 0.8;
+        margin-bottom: 25px;
+    }
+
+    .quote {
+        font-size: 15px;
+        line-height: 1.7;
+        opacity: 0.75;
+        max-width: 520px;
+        margin: auto;
+    }
+
+    .bottom {
+        margin-top: 28px;
+        font-size: 13px;
+        opacity: 0.55;
+    }
+
+    /* Daun terapung */
+    .leaf {
+        position: fixed;
+        z-index: 1;
+        font-size: 22px;
+        opacity: 0.45;
+        animation: fall linear infinite;
+        pointer-events: none;
+    }
+
+    .leaf:nth-child(1) {
+        left: 10%;
+        animation-duration: 12s;
+        animation-delay: 1s;
+    }
+
+    .leaf:nth-child(2) {
+        left: 30%;
+        animation-duration: 15s;
+        animation-delay: 4s;
+    }
+
+    .leaf:nth-child(3) {
+        left: 65%;
+        animation-duration: 13s;
+        animation-delay: 2s;
+    }
+
+    .leaf:nth-child(4) {
+        left: 85%;
+        animation-duration: 17s;
+        animation-delay: 6s;
+    }
+
+    @keyframes fall {
+        0% {
+            top: -10%;
+            transform: rotate(0deg) translateX(0);
+        }
+
+        50% {
+            transform: rotate(180deg) translateX(70px);
+        }
+
+        100% {
+            top: 110%;
+            transform: rotate(360deg) translateX(-50px);
+        }
+    }
+
+    @media (max-width: 520px) {
+        .card {
+            padding: 35px 15px;
+            border-radius: 25px;
+        }
+
+        .countdown {
+            gap: 7px;
+        }
+
+        .box {
+            padding: 17px 5px;
+            border-radius: 15px;
+        }
+
+        .number {
+            font-size: 29px;
+        }
+
+        .label {
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-  <!-- Audio autoplay + loop -->
-  <audio id="bgm" autoplay loop>
-    <source src="https://raw.githubusercontent.com/hzbllh/weeeeeee/refs/heads/main/hachimi%20mambo%20.mp3" type="audio/mpeg">
-  </audio>
+<div class="fog one"></div>
+<div class="fog two"></div>
 
-  <!-- Speaker icon -->
-  <div id="speaker-btn">🔊</div>
+<div class="leaf">🍃</div>
+<div class="leaf">🌿</div>
+<div class="leaf">🍃</div>
+<div class="leaf">🌿</div>
 
-  <div class="poster">
-    <h1>MENJELAJAH DUNIA LUAR WEEEEE</h1>
+<div class="page">
 
-    <div class="img-box">
-      <img src="https://raw.githubusercontent.com/hzbllh/weeeeeee/refs/heads/main/1762425148541.jpg">
+    <div class="card">
+
+        <div class="emoji">🏔️🍓🍃</div>
+
+        <div class="small-title">
+            Trip Kita Bermula Dalam...
+        </div>
+
+        <h1>Teghip Cameghen Hilen</h1>
+
+        <div class="subtitle">
+            🌿 Cameron Highlands Adventure 🌿
+        </div>
+
+        <div class="destination">
+            📍 Cameron Highlands, Pahang
+        </div>
+
+        <div class="countdown">
+
+            <div class="box">
+                <span class="number" id="days">00</span>
+                <span class="label">Hari</span>
+            </div>
+
+            <div class="box">
+                <span class="number" id="hours">00</span>
+                <span class="label">Jam</span>
+            </div>
+
+            <div class="box">
+                <span class="number" id="minutes">00</span>
+                <span class="label">Minit</span>
+            </div>
+
+            <div class="box">
+                <span class="number" id="seconds">00</span>
+                <span class="label">Saat</span>
+            </div>
+
+        </div>
+
+        <div class="date">
+            📅 21 September 2026
+        </div>
+
+        <div class="quote">
+            "Siap sedia untuk udara sejuk, kabus,
+            ladang teh, strawberry dan kenangan baru." 🍓☁️
+        </div>
+
+        <div class="bottom">
+            ✨ Jangan lupa bawa jaket! ✨
+        </div>
+
     </div>
 
-    <div class="event-date">8 DISEMBER 2025</div>
-
-    <div id="countdown">Mengira...</div>
-  </div>
+</div>
 
 <script>
-  // AUTOPLAY FIX
-  document.addEventListener('click', () => {
-    let audio = document.getElementById("bgm");
-    audio.muted = false;
-    audio.play();
-  });
 
-  // SPEAKER TOGGLE
-  const speaker = document.getElementById("speaker-btn");
-  const bgm = document.getElementById("bgm");
+    // 21 September 2026, 12:00 AM waktu Malaysia
+    const targetDate = new Date("2026-09-21T00:00:00+08:00").getTime();
 
-  speaker.onclick = () => {
-    if (bgm.muted) {
-      bgm.muted = false;
-      speaker.innerHTML = "🔊";
-    } else {
-      bgm.muted = true;
-      speaker.innerHTML = "🔈";
+    function updateCountdown() {
+
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+
+            document.getElementById("days").textContent = "00";
+            document.getElementById("hours").textContent = "00";
+            document.getElementById("minutes").textContent = "00";
+            document.getElementById("seconds").textContent = "00";
+
+            document.querySelector(".small-title").textContent =
+                "MASA UNTUK BERTOLAK! 🚗";
+
+            document.querySelector(".quote").textContent =
+                "Cameron Highlands, kami datang! 🏔️🍓🌿";
+
+            return;
+        }
+
+        const days = Math.floor(
+            distance / (1000 * 60 * 60 * 24)
+        );
+
+        const hours = Math.floor(
+            (distance / (1000 * 60 * 60)) % 24
+        );
+
+        const minutes = Math.floor(
+            (distance / (1000 * 60)) % 60
+        );
+
+        const seconds = Math.floor(
+            (distance / 1000) % 60
+        );
+
+        document.getElementById("days").textContent =
+            String(days).padStart(2, "0");
+
+        document.getElementById("hours").textContent =
+            String(hours).padStart(2, "0");
+
+        document.getElementById("minutes").textContent =
+            String(minutes).padStart(2, "0");
+
+        document.getElementById("seconds").textContent =
+            String(seconds).padStart(2, "0");
     }
-  };
 
-  // COUNTDOWN
-  const eventDate = new Date("2025-12-08T00:00:00").getTime();
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = eventDate - now;
-
-    if (distance < 0) {
-      countdown.innerHTML = "Hari ini telah tiba! 🎉";
-      return;
-    }
-
-    const days = Math.floor(distance / (1000*60*60*24));
-    const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-    const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-    const seconds = Math.floor((distance%(1000*60))/1000);
-
-    document.getElementById("countdown").innerHTML =
-      `${days} HARI : ${hours} JAM : ${minutes} MINIT : ${seconds} SAAT`;
-  }
-
-  setInterval(updateCountdown, 1000);
 </script>
 
 </body>
